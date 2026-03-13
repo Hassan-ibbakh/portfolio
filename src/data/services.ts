@@ -1,29 +1,35 @@
 // src/data/services.ts
-import { Bot, Brain, BarChart3, Globe } from "lucide-react";
+import { Bot, Brain, BarChart3, Globe, Workflow } from "lucide-react";
 
 export const services = [
   {
     icon: Brain,
-    title: "AI & Deep Learning Solutions",
+    title: "AI & Deep Learning",
     description:
-      "I design and train advanced Machine Learning and Deep Learning models for Computer Vision, medical imaging, anomaly detection, and predictive analytics using PyTorch and TensorFlow.",
+      "Design and training of advanced ML/DL models for Computer Vision, medical imaging, anomaly detection, and predictive analytics using PyTorch and TensorFlow.",
   },
   {
     icon: Bot,
-    title: "Generative AI & RAG Systems",
+    title: "Generative AI & Agentic Systems",
     description:
-      "I build intelligent assistants powered by LLMs, Retrieval-Augmented Generation (RAG), and autonomous agents for CV analysis, job matching, and workflow automation.",
+      "Building intelligent assistants powered by LLMs, RAG pipelines, and multi-agent architectures for CV analysis, legal guidance, job matching, and automated documentation.",
+  },
+  {
+    icon: Workflow,
+    title: "Workflow Automation",
+    description:
+      "Designing and orchestrating automated AI workflows using n8n, Docker, and API integrations — connecting LLMs, vector databases, and external services into production-ready pipelines.",
   },
   {
     icon: BarChart3,
     title: "Data Science & Predictive Modeling",
     description:
-      "I develop end-to-end data pipelines including preprocessing, feature engineering, model training, evaluation, and real-time forecasting for financial and business data.",
+      "End-to-end data pipelines covering preprocessing, feature engineering, model training, evaluation, and real-time forecasting for financial and business data.",
   },
   {
     icon: Globe,
     title: "AI-Powered Web Applications",
     description:
-      "I integrate AI models into scalable web applications using Flask, FastAPI, Laravel, and React, enabling real-time predictions and intelligent user experiences.",
+      "Integrating AI models into scalable web applications using FastAPI, Flask, and React — enabling real-time predictions and intelligent user experiences.",
   },
 ];

@@ -1,17 +1,17 @@
 // src/data/education.ts
 export const education = [
   {
-    degree: "Master en Intelligence Artificielle et Science des Données",
+    degree: "Master's in Artificial Intelligence & Data Science",
     school: "Faculté des Sciences – Université Mohammed Premier, Oujda",
-    year: "Oct 2024 – Présent",
+    year: "Oct 2024 – Present",
     description:
-      "Spécialisation en Machine Learning, Deep Learning, NLP, Computer Vision et IA Générative. Réalisation de projets avancés en vision médicale, systèmes RAG, LLMs et modélisation prédictive.",
+      "Specialization in Machine Learning, Deep Learning, NLP, Computer Vision, and Generative AI. Built production-ready projects in medical imaging, RAG systems, LLMs, multi-agent pipelines, and predictive modeling.",
   },
   {
-    degree: "Licence en Systèmes Informatiques Répartis",
+    degree: "Bachelor's in Distributed Computer Systems",
     school: "Faculté des Sciences et Techniques – Marrakech",
-    year: "Sep 2021 – Juil 2024",
+    year: "Sep 2021 – Jul 2024",
     description:
-      "Formation en développement logiciel, bases de données, systèmes distribués et architecture des applications. Projets en développement web full-stack et conception de bases de données.",
+      "Foundation in software development, databases, distributed systems, and application architecture. Projects in full-stack web development and database design.",
   },
 ];

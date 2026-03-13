@@ -1,7 +1,6 @@
 // src/components/Skills.tsx
 import { Card, CardContent } from "@/components/ui/card";
-import { Award } from "lucide-react";
-import { skillCategories, certifications } from "@/data/skills";
+import { skillCategories } from "@/data/skills";
 
 const Skills = () => {
   return (
@@ -49,35 +48,6 @@ const Skills = () => {
                 </Card>
               );
             })}
-          </div>
-
-          {/* Certifications Section */}
-          <div className="mt-20">
-            <div className="text-center mb-16">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                Certifications & <span className="text-gradient">Courses</span>
-              </h3>
-              <p className="text-lg text-muted-custom max-w-2xl mx-auto">
-                My commitment to continuous learning and professional growth.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <Card key={index} className="service-card hover-lift p-1">
-                  <CardContent className="p-5 flex items-center gap-4">
-                    <div className="p-2 bg-primary/10 rounded-full">
-                      <Award className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">
-                        {cert.title}
-                      </h4>
-                      <p className="text-sm text-muted-custom">{cert.issuer}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
           </div>
         </div>
       </div>
