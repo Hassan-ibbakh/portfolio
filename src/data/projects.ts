@@ -77,4 +77,15 @@ export const projects: Project[] = [
     image: "/projects/yolo.png",
     isFeatured: true,
   },
+  {
+    title: "Moroccan Pastry Classification System (AI + Web)",
+    shortDescription:
+      "Deep Learning web application classifying 10 traditional Moroccan pastries with 96.53% accuracy using ResNet50 and AI-generated recipes.",
+    fullDescription:
+      "Built an end-to-end Computer Vision solution for classifying traditional Moroccan pastries from images. Collected and curated a dataset of 2,007 images across 10 pastry categories (Briouat, Chebakia, Fekkas, Ghriiba, Kaab el ghazal, Kaek, Makrout, Rkhama, Sellou, Zlabia). Trained and compared multiple CNN architectures including custom CNN (69.98%), EfficientNetB0 (94.29%), and ResNet50 (96.53% accuracy, 100% Top-3 accuracy). Developed a Flask-based web application with real-time image classification, AI-generated recipe descriptions via Groq API (LLM), automatic YouTube tutorial search, and cultural context enrichment. Features elegant Moroccan-inspired UI design and comprehensive recipe generation including ingredients, steps, cooking tips, and difficulty levels.",
+    tech: ["Python", "TensorFlow", "ResNet50", "EfficientNetB0", "Deep Learning", "Computer Vision", "Flask", "Groq API", "LLM"],
+    github: "",
+    image: "/projects/pastry.png",
+    isFeatured: true,
+  },
 ];
