@@ -23,6 +23,28 @@ export const projects: Project[] = [
     isFeatured: true,
   },
   {
+    title: "AI WhatsApp Enrollment Assistant — MySchool Maroc",
+    shortDescription:
+      "Assistant d'inscription WhatsApp multilingue (RAG) automatisant les demandes et l'enregistrement des étudiants.",
+    fullDescription:
+      "Conçu et déployé un assistant IA WhatsApp autonome pour MySchool Maroc : conversations multilingues (Français, Darija, Anglais), support de messages vocaux, pipeline RAG indexant les documents officiels (Pinecone), et capture automatique des inscriptions dans Google Sheets. Déployé en production sur VPS avec Docker, Nginx et monitoring.",
+    tech: [
+      "n8n",
+      "Groq / LLaMA 3.3",
+      "Pinecone",
+      "Evolution API (WhatsApp)",
+      "Google Drive",
+      "Google Sheets",
+      "Docker",
+      "Nginx",
+      "Gemini (transcription)",
+    ],
+    github: "",
+    demo: "",
+    image: "/projects/myschool.png",
+    isFeatured: false,
+  },
+  {
     title: "Stock Price Prediction System (Apple Inc.)",
     shortDescription:
       "Time Series forecasting pipeline combining Machine Learning and Deep Learning for stock price prediction.",
@@ -86,6 +108,29 @@ export const projects: Project[] = [
     tech: ["Python", "TensorFlow", "ResNet50", "EfficientNetB0", "Deep Learning", "Computer Vision", "Flask", "Groq API", "LLM"],
     github: "",
     image: "/projects/pastry.png",
+    isFeatured: true,
+  },
+  {
+    title: "AgriVision — Système Intelligent de Diagnostic des Maladies Végétales",
+    shortDescription:
+      "Plateforme web complète pour la détection et le diagnostic automatisé des maladies des plantes (classification, détection temps réel, Grad-CAM).",
+    fullDescription:
+      "AgriVision est une plateforme web de diagnostic des maladies végétales combinant des modèles de deep learning et des outils de vision par ordinateur. Fonctions clés : upload d'images pour classification (11 classes), détection temps réel via webcam avec YOLOv8, analyse de vidéos et génération de frames annotés, visualisation Grad-CAM pour l'explicabilité, et assistant agricole IA (LLM) fournissant des conseils de traitement et prévention. Architecture : backend Flask, classification TensorFlow/Keras (EfficientNetV2B0), détection Ultralytics YOLOv8, traitement d'images avec OpenCV, et persistance simple pour l'historique des analyses.",
+    tech: [
+      "Python",
+      "Flask",
+      "TensorFlow",
+      "Keras",
+      "EfficientNetV2B0",
+      "YOLOv8",
+      "Ultralytics",
+      "OpenCV",
+      "Grad-CAM",
+      "LLMs",
+    ],
+    github: "",
+    demo: "",
+    image: "/projects/plantguard.png",
     isFeatured: true,
   },
 ];
