@@ -12,7 +12,7 @@ export const user = {
     initials: "HI",
     image: "/images/profile.png",
     short:
-      "Master's student in AI & Data Science, focused on building intelligent systems that solve real problems.",
+      "Master's graduate in AI & Data Science, focused on building intelligent systems that solve real problems.",
     long: [
       "I'm a Master's student in Artificial Intelligence & Data Science at Université Mohammed Premier, Oujda. I work across the full stack of AI — from training and deploying models to building production-ready applications.",
       "My focus areas include Machine Learning, Deep Learning, Computer Vision, NLP, RAG pipelines, and Agentic Systems. I've built projects ranging from medical image classification (94.92% accuracy with ConvNeXt Tiny) to multi-agent career assistants and AI-powered Telegram bots.",

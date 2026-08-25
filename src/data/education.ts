@@ -3,7 +3,7 @@ export const education = [
   {
     degree: "Master's in Artificial Intelligence & Data Science",
     school: "Faculté des Sciences – Université Mohammed Premier, Oujda",
-    year: "Oct 2024 – Present",
+    year: "Oct 2024 – 2026",
     description:
       "Specialization in Machine Learning, Deep Learning, NLP, Computer Vision, and Generative AI. Built production-ready projects in medical imaging, RAG systems, LLMs, multi-agent pipelines, and predictive modeling.",
   },
