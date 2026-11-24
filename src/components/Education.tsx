@@ -3,11 +3,13 @@ import { GraduationCap } from "lucide-react";
 import { education } from "@/data/education";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
+import SectionBackground from "@/components/SectionBackground";
 
 const Education = () => {
   return (
-    <section id="education" className="py-20 md:py-28 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="education" className="relative overflow-hidden py-20 md:py-28 bg-secondary/30">
+      <SectionBackground variant="stream" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto">
           <SectionHeader
             eyebrow="Journey"

@@ -6,13 +6,15 @@ import { projects } from "@/data/projects";
 import SectionHeader from "@/components/SectionHeader";
 import ProjectCard from "@/components/ProjectCard";
 import Reveal from "@/components/Reveal";
+import SectionBackground from "@/components/SectionBackground";
 
 const Portfolio = () => {
   const featuredProjects = projects.filter((project) => project.isFeatured);
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="portfolio" className="relative overflow-hidden py-20 md:py-28 bg-secondary/30">
+      <SectionBackground variant="grid" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             eyebrow="Selected work"

@@ -4,11 +4,13 @@ import { ArrowRight } from "lucide-react";
 import { services } from "@/data/services";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
+import SectionBackground from "@/components/SectionBackground";
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="services" className="relative overflow-hidden py-20 md:py-28 bg-background">
+      <SectionBackground variant="circuit" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             eyebrow="What I do"

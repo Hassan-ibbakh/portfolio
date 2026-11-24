@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
 import SectionHeader from "@/components/SectionHeader";
+import SectionBackground from "@/components/SectionBackground";
 import { cn } from "@/lib/utils";
 
 type Filter = "All" | ProjectCategory;
@@ -38,8 +39,9 @@ const ProjectsPage = () => {
   return (
     <div className="bg-background min-h-screen">
       <Navbar />
-      <main className="pt-28 pb-20 md:pb-28">
-        <div className="container mx-auto px-4">
+      <main className="relative overflow-hidden pt-28 pb-20 md:pb-28">
+        <SectionBackground variant="grid" />
+        <div className="container mx-auto px-4 relative">
           <div className="max-w-6xl mx-auto">
             <Link
               to="/"

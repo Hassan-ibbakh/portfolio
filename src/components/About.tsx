@@ -5,6 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
 import Tilt from "@/components/Tilt";
 import CountUp from "@/components/CountUp";
+import SectionBackground from "@/components/SectionBackground";
 
 const highlights = [
   { value: <CountUp value={projects.length} />, label: "AI projects built" },
@@ -15,8 +16,9 @@ const highlights = [
 
 const About = () => {
   return (
-    <section id="about" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="about" className="relative overflow-hidden py-20 md:py-28 bg-background">
+      <SectionBackground variant="dots" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <SectionHeader eyebrow="About" title={<>About <span className="text-gradient">me</span></>} />
 

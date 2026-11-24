@@ -2,11 +2,13 @@
 import { skillCategories } from "@/data/skills";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
+import SectionBackground from "@/components/SectionBackground";
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="skills" className="relative overflow-hidden py-20 md:py-28 bg-background">
+      <SectionBackground variant="particles" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             eyebrow="Skills"

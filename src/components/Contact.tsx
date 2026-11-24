@@ -17,6 +17,7 @@ import { user } from "@/data/user";
 import CalendlyWidget from "./CalendlyWidget";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
+import SectionBackground from "@/components/SectionBackground";
 
 const emptyForm = { name: "", email: "", subject: "", message: "" };
 
@@ -92,8 +93,9 @@ const Contact = () => {
   const fieldClass = "bg-background border-border focus-visible:ring-primary";
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative overflow-hidden py-20 md:py-28 bg-secondary/30">
+      <SectionBackground variant="waves" />
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
             eyebrow="Contact"

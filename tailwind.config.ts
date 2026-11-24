@@ -118,6 +118,21 @@ export default {
 				'gradient-x': {
 					'0%, 100%': { backgroundPosition: '0% 50%' },
 					'50%': { backgroundPosition: '100% 50%' }
+				},
+				aurora: {
+					'0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+					'33%': { transform: 'translate(40px, -30px) scale(1.1)' },
+					'66%': { transform: 'translate(-30px, 25px) scale(0.95)' }
+				},
+				stream: {
+					'0%': { top: '-8rem', opacity: '0' },
+					'10%': { opacity: '1' },
+					'90%': { opacity: '1' },
+					'100%': { top: '100%', opacity: '0' }
+				},
+				wave: {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
 				}
 			},
 			animation: {
@@ -126,7 +141,10 @@ export default {
 				caret: 'caret 1s steps(1) infinite',
 				float: 'float 5s ease-in-out infinite',
 				'gradient-x': 'gradient-x 6s ease infinite',
-				'spin-slow': 'spin 8s linear infinite'
+				'spin-slow': 'spin 8s linear infinite',
+				aurora: 'aurora 18s ease-in-out infinite',
+				stream: 'stream 8s linear infinite',
+				wave: 'wave 20s linear infinite'
 			}
 		}
 	},
