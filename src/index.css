@@ -126,12 +126,37 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Keep section titles visible below the fixed navbar when jumping to an anchor */
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -189,15 +214,27 @@
     @apply transition-smooth hover:scale-110 hover:text-primary;
   }
 
-  /* Service Card Animation */
+  /* Static surface card (no hover effect: it is not clickable) */
   .service-card {
-    @apply transition-smooth hover-lift border border-border bg-card;
+    @apply border border-border bg-card;
     background: var(--gradient-secondary);
   }
 
-  .service-card:hover {
-    border-color: hsl(var(--primary));
-    box-shadow: var(--shadow-glow);
+  /* Clickable card: lifts and glows on hover / keyboard focus */
+  .card-interactive {
+    @apply transition-smooth;
+  }
+
+  .card-interactive:hover,
+  .card-interactive:focus-within {
+    @apply -translate-y-1;
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+  }
+
+  /* Small uppercase label above section titles */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary;
   }
 }
 

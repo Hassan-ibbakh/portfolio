@@ -1,195 +1,91 @@
 // src/pages/ProjectsPage.tsx
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { ExternalLink, Github, ArrowLeft } from "lucide-react";
-import { projects, Project } from "@/data/projects";
+import { ArrowLeft } from "lucide-react";
+import { projects, projectCategories, ProjectCategory } from "@/data/projects";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProjectCard from "@/components/ProjectCard";
+import SectionHeader from "@/components/SectionHeader";
 import { cn } from "@/lib/utils";
 
+type Filter = "All" | ProjectCategory;
+
 const ProjectsPage = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [filter, setFilter] = useState<Filter>("All");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
+    document.title = "Projects — Hassan Ibbakh";
+    return () => {
+      document.title = "Hassan Ibbakh — AI & Machine Learning Engineer";
+    };
   }, []);
+
+  const filters: { label: Filter; count: number }[] = useMemo(
+    () => [
+      { label: "All", count: projects.length },
+      ...projectCategories.map((c) => ({
+        label: c,
+        count: projects.filter((p) => p.category === c).length,
+      })),
+    ],
+    []
+  );
+
+  const visible = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <div className="bg-background min-h-screen">
-      <section id="portfolio" className="py-20">
+      <Navbar />
+      <main className="pt-28 pb-20 md:pb-28">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                All <span className="text-gradient">Projects</span>
-              </h2>
-              <p className="text-lg text-muted-custom max-w-2xl mx-auto">
-                A complete collection of my work in AI, data, and software
-                development.
-              </p>
+            <Link
+              to="/"
+              className="group inline-flex items-center gap-2 text-sm text-secondary-custom hover:text-primary transition-smooth mb-8"
+            >
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+              Back to home
+            </Link>
+
+            <SectionHeader
+              as="h1"
+              eyebrow="Portfolio"
+              title={<>All <span className="text-gradient">projects</span></>}
+              subtitle="A complete collection of my work in AI, data and software development."
+            />
+
+            <div className="flex flex-wrap justify-center gap-2 mb-10" role="group" aria-label="Filter projects by category">
+              {filters.map(({ label, count }) => (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => setFilter(label)}
+                  aria-pressed={filter === label}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-medium border transition-smooth",
+                    filter === label
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-card border-border text-secondary-custom hover:border-primary/60 hover:text-foreground"
+                  )}
+                >
+                  {label}
+                  <span className={cn("ml-1.5 text-xs", filter === label ? "opacity-80" : "text-muted-custom")}>
+                    {count}
+                  </span>
+                </button>
+              ))}
             </div>
 
-            <div className="mb-12 flex justify-center">
-              <Button
-                asChild
-                variant="outline"
-                className="bg-secondary/30 hover:bg-secondary/60 hover:text-primary group"
-              >
-                <Link to="/">
-                  <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-                  Back to Home
-                </Link>
-              </Button>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {visible.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
             </div>
-
-            <Dialog>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project) => {
-                  const hasGitHub = project.github && project.github !== "#";
-                  const hasDemo = !!project.demo;
-
-                  return (
-                    <Card
-                      key={project.title}
-                      className="service-card group overflow-hidden flex flex-col"
-                    >
-                      <div className="relative overflow-hidden h-48">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent"></div>
-                      </div>
-
-                      <CardContent className="p-6 flex flex-col flex-grow">
-                        <h3 className="text-xl font-semibold text-foreground mb-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-secondary-custom text-sm leading-relaxed mb-4 flex-grow">
-                          {project.shortDescription}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tech.slice(0, 4).map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* --- NEW & IMPROVED BUTTON LOGIC --- */}
-                        <div className="flex gap-4 mt-auto">
-                          {hasDemo ? (
-                            <>
-                              <Button variant="default" size="sm" asChild>
-                                <a
-                                  href={project.demo}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex-1"
-                                >
-                                  <ExternalLink className="w-4 h-4 mr-2" />
-                                  Live Demo
-                                </a>
-                              </Button>
-                              <DialogTrigger asChild>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="flex-1"
-                                  onClick={() => setSelectedProject(project)}
-                                >
-                                  Learn More
-                                </Button>
-                              </DialogTrigger>
-                            </>
-                          ) : hasGitHub ? (
-                            <>
-                              <Button variant="outline" size="sm" asChild>
-                                <a
-                                  href={project.github}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex-1"
-                                >
-                                  <Github className="w-4 h-4 mr-2" />
-                                  Code
-                                </a>
-                              </Button>
-                              <DialogTrigger asChild>
-                                <Button
-                                  variant="default"
-                                  size="sm"
-                                  className="flex-1"
-                                  onClick={() => setSelectedProject(project)}
-                                >
-                                  Learn More
-                                </Button>
-                              </DialogTrigger>
-                            </>
-                          ) : (
-                            <DialogTrigger asChild>
-                              <Button
-                                variant="default"
-                                size="sm"
-                                className="w-full"
-                                onClick={() => setSelectedProject(project)}
-                              >
-                                Learn More
-                              </Button>
-                            </DialogTrigger>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-
-              {selectedProject && (
-                <DialogContent className="bg-card border-border text-foreground sm:max-w-[625px] max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl text-gradient mb-2">
-                      {selectedProject.title}
-                    </DialogTitle>
-                    <DialogDescription className="text-secondary-custom leading-relaxed">
-                      {selectedProject.fullDescription}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="py-4">
-                    <h4 className="font-semibold text-foreground mb-3">
-                      Technologies Used
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </DialogContent>
-              )}
-            </Dialog>
           </div>
         </div>
-      </section>
+      </main>
       <Footer />
     </div>
   );

@@ -1,49 +1,40 @@
 // src/components/About.tsx
-import { Card } from "@/components/ui/card";
 import { user } from "@/data/user";
+import { projects } from "@/data/projects";
+import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
+
+const highlights = [
+  { value: `${projects.length}`, label: "AI projects built" },
+  { value: "96.5%", label: "Top model accuracy" },
+  { value: "M.Sc.", label: "AI & Data Science" },
+  { value: "Prod", label: "RAG assistant deployed" },
+];
 
 const About = () => {
   return (
-    <section id="about" className="py-10 bg-background">
+    <section id="about" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              About <span className="text-gradient">Me</span>
-            </h2>
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader eyebrow="About" title={<>About <span className="text-gradient">me</span></>} />
 
-          {/* About Content */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <div className="space-y-6">
+          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-14 items-start">
+            <Reveal className="space-y-5">
               {user.about.long.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-lg text-secondary-custom leading-relaxed text-center sm:text-left"
-                >
+                <p key={index} className="text-base md:text-lg text-secondary-custom leading-relaxed">
                   {paragraph}
                 </p>
               ))}
-            </div>
+            </Reveal>
 
-            {/* Visual Element with Profile Image */}
-            <div className="flex justify-center">
-              <Card className="service-card p-8 max-w-sm w-full">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 ring-4 ring-primary/20">
-                    <img
-                      src={user.about.image}
-                      alt={user.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold">{user.title}</h3>
-                  <p className="text-muted-custom">{user.about.short}</p>
+            <Reveal delay={0.1} className="grid grid-cols-2 gap-4">
+              {highlights.map((item) => (
+                <div key={item.label} className="service-card rounded-xl p-5">
+                  <p className="font-display text-3xl font-bold text-gradient mb-1">{item.value}</p>
+                  <p className="text-sm text-muted-custom leading-snug">{item.label}</p>
                 </div>
-              </Card>
-            </div>
+              ))}
+            </Reveal>
           </div>
         </div>
       </div>

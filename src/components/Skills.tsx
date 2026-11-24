@@ -1,51 +1,48 @@
 // src/components/Skills.tsx
-import { Card, CardContent } from "@/components/ui/card";
 import { skillCategories } from "@/data/skills";
+import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-background">
+    <section id="skills" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              My Tech <span className="text-gradient">Arsenal</span>
-            </h2>
-            <p className="text-lg text-muted-custom max-w-2xl mx-auto">
-              A collection of the tools and technologies I use to build powerful
-              and intelligent solutions.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="Skills"
+            title={<>Tech <span className="text-gradient">stack</span></>}
+            subtitle="The tools and technologies I use to build intelligent, production-ready solutions."
+          />
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Flex + basis so an incomplete last row stays centered */}
+          <div className="flex flex-wrap justify-center gap-6">
             {skillCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
-                <Card
-                  key={index}
-                  className="service-card p-6 text-center transform transition-transform duration-300 hover:-translate-y-2"
+                <Reveal
+                  key={category.title}
+                  delay={(index % 3) * 0.08}
+                  className="w-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
                 >
-                  <CardContent className="p-0">
-                    <div className="flex justify-center mb-4">
-                      <IconComponent className="w-8 h-8 mb-4 text-primary" />
+                  <div className="service-card rounded-xl p-6 h-full">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="grid place-items-center w-10 h-10 rounded-lg bg-primary/10 text-primary">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground">{category.title}</h3>
                     </div>
-                    <h3 className="text-xl font-semibold mb-4 text-foreground">
-                      {category.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {category.skills.map((skill, skillIndex) => (
-                        <div
-                          key={skillIndex}
-                          className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium"
+                    <ul className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <li
+                          key={skill}
+                          className="px-3 py-1 bg-muted text-secondary-custom rounded-full text-xs font-medium border border-border"
                         >
                           {skill}
-                        </div>
+                        </li>
                       ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                    </ul>
+                  </div>
+                </Reveal>
               );
             })}
           </div>

@@ -1,72 +1,43 @@
 // src/components/Education.tsx
-import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap } from "lucide-react";
 import { education } from "@/data/education";
+import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
 
 const Education = () => {
   return (
-    <section id="education" className="py-10 bg-background">
+    <section id="education" className="py-20 md:py-28 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              My <span className="text-gradient">Journey</span>
-            </h2>
-            <p className="text-lg text-muted-custom max-w-2xl mx-auto">
-              My academic and professional qualifications that shape my
-              expertise.
-            </p>
-          </div>
+        <div className="max-w-3xl mx-auto">
+          <SectionHeader
+            eyebrow="Journey"
+            title={<>Education & <span className="text-gradient">background</span></>}
+            subtitle="The academic path that shaped my expertise."
+          />
 
-          {/* Education Timeline */}
-          <div className="relative">
-            {/* The vertical line */}
-            <div className="absolute left-4 sm:left-1/2 top-0 h-full w-1 bg-gradient-to-b from-primary/30 to-secondary/30"></div>
-
+          {/* Left-aligned timeline: the line and markers sit in the left gutter on every screen size */}
+          <ol className="relative border-l-2 border-primary/25 ml-5 space-y-10">
             {education.map((item, index) => (
-              <div key={index} className="relative mb-12">
-                <div
-                  className="flex items-center sm:justify-normal"
-                  style={{
-                    flexDirection: index % 2 === 0 ? "row" : "row-reverse",
-                  }}
+              <li key={item.degree} className="relative pl-10">
+                <span
+                  className="absolute -left-[1.3rem] top-5 grid place-items-center w-10 h-10 rounded-full bg-background border-2 border-primary text-primary"
+                  aria-hidden="true"
                 >
-                  <div className="sm:w-1/2"></div>
-                  <div
-                    className={`sm:w-1/2 ${
-                      index % 2 === 0 ? "sm:pl-8" : "sm:pr-8"
-                    }`}
-                  >
-                    <div className="absolute left-4 sm:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2">
-                      <div className="w-5 h-5 bg-primary rounded-full border-4 border-background shadow-lg"></div>
-                    </div>
-                    <Card className="service-card hover-lift">
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <GraduationCap className="text-primary mt-1 h-6 w-6 flex-shrink-0" />
-                          <div>
-                            <p className="text-xs text-primary font-semibold mb-1">
-                              {item.year}
-                            </p>
-                            <h3 className="text-lg font-bold text-foreground">
-                              {item.degree}
-                            </h3>
-                            <p className="text-sm text-secondary-custom font-medium mb-2">
-                              {item.school}
-                            </p>
-                            <p className="text-sm text-muted-custom">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <GraduationCap className="w-5 h-5" />
+                </span>
+                <Reveal delay={index * 0.08}>
+                  <div className="service-card rounded-xl p-6">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">
+                      {item.year}
+                    </p>
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-1">{item.degree}</h3>
+                    <p className="text-sm text-secondary-custom font-medium mb-3">{item.school}</p>
+                    <p className="text-sm text-muted-custom leading-relaxed">{item.description}</p>
                   </div>
-                </div>
-              </div>
+                </Reveal>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>

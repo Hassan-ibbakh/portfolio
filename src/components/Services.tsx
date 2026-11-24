@@ -1,78 +1,51 @@
 // src/components/Services.tsx
-import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { services } from "@/data/services";
+import SectionHeader from "@/components/SectionHeader";
+import Reveal from "@/components/Reveal";
 
 const Services = () => {
   return (
-    <section id="services" className="py-10 bg-secondary/30">
+    <section id="services" className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              My <span className="text-gradient">Services</span>
-            </h2>
-            <p className="text-lg text-muted-custom max-w-2xl mx-auto">
-              Comprehensive solutions that bridge the gap between cutting-edge
-              AI technology and practical business applications
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="What I do"
+            title={<>How I can <span className="text-gradient">help</span></>}
+            subtitle="Bridging cutting-edge AI and practical, real-world applications."
+          />
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* Flex + basis so the 5th card is centered instead of left alone */}
+          <div className="flex flex-wrap justify-center gap-6">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <Card key={index} className="service-card p-8 h-full">
-                  <CardContent className="p-0">
-                    <div className="flex items-start space-x-4">
-                      {/* Icon */}
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-primary rounded-lg flex items-center justify-center glow">
-                          <IconComponent className="w-8 h-8 text-primary-foreground" />
-                        </div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold mb-3 text-foreground">
-                          {service.title}
-                        </h3>
-                        <p className="text-secondary-custom leading-relaxed">
-                          {service.description}
-                        </p>
-                      </div>
+                <Reveal
+                  key={service.title}
+                  delay={(index % 3) * 0.08}
+                  className="w-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]"
+                >
+                  <div className="service-card rounded-xl p-6 h-full">
+                    <div className="w-12 h-12 gradient-primary rounded-lg grid place-items-center mb-5">
+                      <IconComponent className="w-6 h-6 text-primary-foreground" />
                     </div>
-                  </CardContent>
-                </Card>
+                    <h3 className="text-lg font-semibold mb-2 text-foreground">{service.title}</h3>
+                    <p className="text-sm text-secondary-custom leading-relaxed">{service.description}</p>
+                  </div>
+                </Reveal>
               );
             })}
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <p className="text-lg text-muted-custom mb-6">
-              Ready to transform your business with AI-powered solutions?
-            </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center text-primary hover:text-primary/80 transition-smooth font-medium text-lg"
+          <div className="text-center mt-14">
+            <Link
+              to={{ pathname: "/", hash: "#contact" }}
+              className="group inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-smooth font-medium text-lg"
             >
               Let's discuss your project
-              <svg
-                className="ml-2 w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
       </div>

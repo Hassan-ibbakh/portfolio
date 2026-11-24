@@ -1,8 +1,14 @@
 // src/data/user.ts
 export const user = {
   name: "Hassan Ibbakh",
-  title: "AI & ML Engineer | Computer Vision · NLP · GenAI & Agentic Systems",
+  title: "AI & Machine Learning Engineer",
+  specialties: ["Computer Vision", "NLP", "Generative AI", "Agentic Systems"],
+  location: "Morocco",
+  availability: "Open to opportunities",
   email: "hassanibbakh@gmail.com",
+  // Put your CV in public/cv/ and set the path here, e.g. "/cv/Hassan-Ibbakh-CV.pdf".
+  // The "Resume" buttons stay hidden while this is empty.
+  resume: "",
   social: {
     github: "https://github.com/Hassan-ibbakh",
     linkedin: "https://www.linkedin.com/in/hassan-ibakh",
@@ -10,7 +16,7 @@ export const user = {
   calendly: "https://calendly.com/hassanibbakh/30min-1",
   about: {
     initials: "HI",
-    image: "/images/profile.png",
+    image: "/images/profile.webp",
     short:
       "Master's graduate in AI & Data Science, focused on building intelligent systems that solve real problems.",
     long: [
