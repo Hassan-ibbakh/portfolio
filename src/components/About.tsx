@@ -3,10 +3,12 @@ import { user } from "@/data/user";
 import { projects } from "@/data/projects";
 import SectionHeader from "@/components/SectionHeader";
 import Reveal from "@/components/Reveal";
+import Tilt from "@/components/Tilt";
+import CountUp from "@/components/CountUp";
 
 const highlights = [
-  { value: `${projects.length}`, label: "AI projects built" },
-  { value: "96.5%", label: "Top model accuracy" },
+  { value: <CountUp value={projects.length} />, label: "AI projects built" },
+  { value: <CountUp value={96.5} decimals={1} suffix="%" />, label: "Top model accuracy" },
   { value: "M.Sc.", label: "AI & Data Science" },
   { value: "Prod", label: "RAG assistant deployed" },
 ];
@@ -29,10 +31,12 @@ const About = () => {
 
             <Reveal delay={0.1} className="grid grid-cols-2 gap-4">
               {highlights.map((item) => (
-                <div key={item.label} className="service-card rounded-xl p-5">
-                  <p className="font-display text-3xl font-bold text-gradient mb-1">{item.value}</p>
-                  <p className="text-sm text-muted-custom leading-snug">{item.label}</p>
-                </div>
+                <Tilt key={item.label} max={10} className="rounded-xl">
+                  <div className="service-card rounded-xl p-5 h-full transition-colors hover:border-primary/50">
+                    <p className="font-display text-3xl font-bold text-gradient mb-1 tabular-nums">{item.value}</p>
+                    <p className="text-sm text-muted-custom leading-snug">{item.label}</p>
+                  </div>
+                </Tilt>
               ))}
             </Reveal>
           </div>

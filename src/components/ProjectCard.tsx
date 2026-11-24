@@ -12,6 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Project } from "@/data/projects";
+import Tilt from "@/components/Tilt";
 
 const MAX_TAGS = 4;
 
@@ -47,6 +48,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <Dialog>
+      <Tilt max={6} className="h-full rounded-lg">
       <Card className="service-card card-interactive group overflow-hidden flex flex-col h-full">
         <DialogTrigger asChild>
           <button
@@ -105,6 +107,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </div>
         </CardContent>
       </Card>
+      </Tilt>
 
       <DialogContent className="bg-card border-border text-foreground sm:max-w-2xl max-h-[90vh] overflow-y-auto p-0 gap-0">
         <img

@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Download, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,9 +21,17 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
 
-  // Solid background once the page is scrolled
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  // Solid background once the page is scrolled + reading progress bar
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -137,6 +145,14 @@ const Navbar = () => {
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </nav>
+
+      {/* Reading progress */}
+      <div
+        ref={progressRef}
+        className="absolute left-0 bottom-0 h-0.5 w-full origin-left gradient-primary"
+        style={{ transform: "scaleX(0)" }}
+        aria-hidden="true"
+      />
 
       {/* Mobile menu */}
       {open && (
