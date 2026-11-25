@@ -9,7 +9,7 @@ import SectionBackground from "@/components/SectionBackground";
 
 const highlights = [
   { value: <CountUp value={projects.length} />, label: "AI projects built" },
-  { value: <CountUp value={96.5} decimals={1} suffix="%" />, label: "Top model accuracy" },
+  { value: <CountUp value={98.5} decimals={1} suffix="%" />, label: "Top model accuracy" },
   { value: "M.Sc.", label: "AI & Data Science" },
   { value: "Prod", label: "RAG assistant deployed" },
 ];
